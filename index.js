@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Svajksta free
 // @namespace    https://greasyfork.org/ru/users/901750-gooseob
-// @version      1.0.0
+// @version      1.1.0
 // @description  Allows text selecting on svajksta
 // @author       GooseOb
 // @license      MIT
@@ -22,7 +22,9 @@
 	].forEach(style => {
 		html.style[style] = 'unset';
 	});
-	body.style.cursor = 'unset';
+	setTimeout(() => {
+		body.style.cursor = 'auto';
+	}, 100);
 
 	const listener = e => {e.stopPropagation()};
 	const options = {capture: true};
