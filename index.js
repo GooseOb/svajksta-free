@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Svajksta free
 // @namespace    https://greasyfork.org/ru/users/901750-gooseob
-// @version      1.1.0
+// @version      1.1.1
 // @description  Allows text selecting on svajksta
 // @author       GooseOb
 // @license      MIT
@@ -10,30 +10,27 @@
 // ==/UserScript==
 
 (function() {
-	const {body, html} = document;
+	const {body, documentElement} = document;
 
-	[
+	for (const style of [
 		'-webkit-touch-callout',
 		'-webkit-user-select',
 		'-khtml-user-select',
 		'-moz-user-select',
 		'user-select',
 		'-webkit-tap-highlight-color'
-	].forEach(style => {
-		html.style[style] = 'unset';
-	});
+	]) documentElement.style[style] = 'unset';
+
 	setTimeout(() => {
 		body.style.cursor = 'auto';
 	}, 100);
 
 	const listener = e => {e.stopPropagation()};
 	const options = {capture: true};
-	[
+	for (const eventType of [
 		'selectstart',
 		'contextmenu',
 		'click',
 		'mousedown'
-	].forEach(eventType => {
-		body.addEventListener(eventType, listener, options);
-	});
+	]) body.addEventListener(eventType, listener, options);
 })();
